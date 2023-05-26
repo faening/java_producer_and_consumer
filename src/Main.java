@@ -1,10 +1,12 @@
-import entities.MyQueue;
-import entities.Producer;
 import entities.Consumer;
+import entities.Producer;
+
+import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.LinkedBlockingDeque;
 
 public class Main {
     public static void main(String[] args) {
-        MyQueue queue = new MyQueue(10);
+        BlockingQueue<Integer> queue = new LinkedBlockingDeque(10);
 
         Thread threadProducer1 = new Thread( new Producer(queue) );
         Thread threadConsumer1 = new Thread( new Consumer(queue) );

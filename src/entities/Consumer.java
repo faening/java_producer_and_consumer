@@ -1,9 +1,11 @@
 package entities;
 
-public class Consumer implements Runnable {
-    private MyQueue queue;
+import java.util.concurrent.BlockingQueue;
 
-    public Consumer(MyQueue queue) {
+public class Consumer implements Runnable {
+    private BlockingQueue<Integer> queue;
+
+    public Consumer(BlockingQueue<Integer> queue) {
         this.queue = queue;
     }
 
@@ -13,7 +15,7 @@ public class Consumer implements Runnable {
 
         while(true) {
             try {
-                number = queue.remove();
+                number = queue.take();
                 Thread.sleep(1000); // Simula o tempo de consumo
                 System.out.printf("Consumer removed item %d from the queue \n", number);
             } catch (InterruptedException e) {
